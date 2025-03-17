@@ -10,11 +10,15 @@ public abstract class TargetFinder : MonoBehaviour
     [SerializeField]
     public bool seeTroughObstacles;
     private bool targetFound;
-    public delegate void TargetFoundAction(Collider objectFound);
+    private Collider _foundTarget;
+    public delegate void TargetFoundAction();
     public event TargetFoundAction onTargetedFound;
+    public delegate void TargetChangeAction();
+    public event TargetChangeAction onTargetedChange;
     public delegate void TargetLostAction();
     public event TargetLostAction onTargetLost;
 
+    public Collider FoundTarget { get { return _foundTarget; } private set { _foundTarget = value; } }
 
     void FixedUpdate()
     {
@@ -27,16 +31,25 @@ public abstract class TargetFinder : MonoBehaviour
         try
         {
 
-            if (elementsFound.Count() > 0 && !targetFound)
+            if (elementsFound.Count() > 0)
             {
                 Debug.Log(gameObject.name + " \"TargetFound\"");
-                onTargetedFound.Invoke(SelectHighestThreat(elementsFound));
+                Collider actualFoundTarget = SelectHighestThreat(elementsFound);
                 targetFound = true;
+                if(actualFoundTarget != FoundTarget)
+                {
+                    onTargetedChange?.Invoke();
+                }
+                FoundTarget = actualFoundTarget;
+                if (!targetFound)
+                {
+                    onTargetedFound?.Invoke();
+                }
             }
             else if (elementsFound.Count() <= 0 && targetFound)
             {
                 Debug.Log(gameObject.name + " \"TargetLost\"");
-                onTargetLost.Invoke();
+                onTargetLost?.Invoke();
                 targetFound = false;
             }
         }
@@ -75,5 +88,6 @@ public abstract class TargetFinder : MonoBehaviour
     {
         return elements.Aggregate(SelectHighestThreat);
     }
+    //I want its children to represent the are its looking
     protected abstract void OnDrawGizmos();
 }
