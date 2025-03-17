@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class TargetFinder : MonoBehaviour
 {
     [SerializeField]
-    public Group targetGroup;
+    public Group[] targetGroups;
     [SerializeField]
     public bool seeTroughObstacles;
     private bool targetFound;
@@ -64,7 +64,7 @@ public abstract class TargetFinder : MonoBehaviour
         bool result = element.TryGetComponent(out ITargetable targetable);
         if (result)
         {
-            result = targetable.GroupMember == targetGroup;
+            result = targetGroups.Contains(targetable.GroupMember);
             if(result && !seeTroughObstacles)
             {
                 result = LineOfShightCheck(element);
@@ -88,6 +88,6 @@ public abstract class TargetFinder : MonoBehaviour
     {
         return elements.Aggregate(SelectHighestThreat);
     }
-    //I want its children to represent the are its looking
+    //I want the class children to represent the area its looking for targets.
     protected abstract void OnDrawGizmos();
 }

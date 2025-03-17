@@ -31,6 +31,12 @@ public class IACharacter : Character
     protected virtual void OnEnable()
     {
         _targetFinder.onTargetedFound += CheckEndingConditions;
+        _targetFinder.onTargetLost += CheckEndingConditions;
+    }
+    protected virtual void OnDisable()
+    {
+        _targetFinder.onTargetedFound -= CheckEndingConditions;
+        _targetFinder.onTargetLost -= CheckEndingConditions;
     }
     public override void Attack()
     {
@@ -85,5 +91,20 @@ public class IACharacter : Character
         _currentNode.OnStateExit(this);
         _currentNode = state;
         _currentNode.OnStateEnter(this);
+    }
+
+    protected override void OnDeath()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void OnRevive()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void OnHPChange(int hpChange)
+    {
+        throw new System.NotImplementedException();
     }
 }

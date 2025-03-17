@@ -20,11 +20,6 @@ public class Weapon : MonoBehaviour
             _weaponInfo = value;
         }
     }
-
-    public void ChangeWeapon(WeaponSO newWeapon)
-    {
-        WeaponInfo = newWeapon;
-    }
     public void CreateBullet()
     {
         Proyectile newProyectile;
@@ -39,9 +34,10 @@ public class Weapon : MonoBehaviour
             newProyectile.OriginPool = _proyectilePool;
         }
         newProyectile.transform.position = _bulletSpawn.position;
+        newProyectile.transform.LookAt(_bulletSpawn.position + _bulletSpawn.forward);
     }
     public void Fire()
     {
-        
+        CreateBullet();
     }
 }

@@ -18,20 +18,9 @@ public abstract class Proyectile : MonoBehaviour
         private get { return _originPool; }
         set { _originPool = value; }
     }
+    protected virtual void OnHit(Character hitedTarget)
+    {
 
-    /**
-     * <summary>
-     * This method is responsible of changing the data of the proyectile to avoid destroying proyectiles inside a pool.
-     * </summary>
-     */
-    public void CopyProyectileData(Proyectile newProyectileInfo)
-    {
-        StartCoroutine(AwaitForViableChange(newProyectileInfo));
-    }
-    protected virtual IEnumerator AwaitForViableChange(Proyectile newProyectileInfo)
-    {
-        yield return new WaitUntil(() => gameObject.activeSelf); 
-        Damage = newProyectileInfo.Damage;
     }
     protected void Despawn()
     {

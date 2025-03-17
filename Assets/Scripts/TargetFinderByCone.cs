@@ -24,7 +24,6 @@ public class TargetFinderByCone : TargetFinder
             
         }
         return colliders.ToArray();
-        throw new System.NotImplementedException();
     }
 
     protected override void OnDrawGizmos()

@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e5d292ccd578042a3e17d082ca309f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetGroup: 0
+  targetGroups: 
   seeTroughObstacles: 0
   _visionRange: 10
   _visionAngle: 0
