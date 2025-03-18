@@ -25,7 +25,12 @@ public class TestNavmesh : MonoBehaviour
                 _agent.SetDestination(hit.point);
                 Debug.DrawRay(ray.origin, hit.point, Color.red, 1);
             }
+          
             
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+
         }
     }
 

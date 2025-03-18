@@ -6,9 +6,11 @@ public abstract class Proyectile : MonoBehaviour
 {
     Stack<Proyectile> _originPool;
     [SerializeField]
-    int _damage;
+    uint _damage;
+    Character _owner;
 
-    protected int Damage
+
+    protected uint Damage
     {
         get { return _damage; }
         private set { _damage = value; }
@@ -18,9 +20,14 @@ public abstract class Proyectile : MonoBehaviour
         private get { return _originPool; }
         set { _originPool = value; }
     }
+    public Character Owner
+    {
+        protected get { return _owner; }
+        set { _owner = value; }
+    }
     protected virtual void OnHit(Character hitedTarget)
     {
-
+        hitedTarget.HitPointsManager.Hurt(Damage);
     }
     protected void Despawn()
     {
