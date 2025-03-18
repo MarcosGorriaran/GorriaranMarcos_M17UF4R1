@@ -26,15 +26,14 @@ public class Weapon : MonoBehaviour
         if (_proyectilePool.Count > 0)
         {
             newProyectile = _proyectilePool.Pop();
-            
+            newProyectile.gameObject.SetActive(true);
         }
         else
         {
             newProyectile = Instantiate(WeaponInfo.BulletPrefab);
             newProyectile.OriginPool = _proyectilePool;
         }
-        newProyectile.transform.position = _bulletSpawn.position;
-        newProyectile.transform.LookAt(_bulletSpawn.position + _bulletSpawn.forward);
+        newProyectile.AdjustRotation(_bulletSpawn);
     }
     public void Fire()
     {

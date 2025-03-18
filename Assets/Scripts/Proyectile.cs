@@ -25,6 +25,11 @@ public abstract class Proyectile : MonoBehaviour
         protected get { return _owner; }
         set { _owner = value; }
     }
+    public virtual void AdjustRotation(Transform basedOn)
+    {
+        transform.position = basedOn.position;
+        transform.LookAt(basedOn.position + basedOn.forward);
+    }
     protected virtual void OnHit(Character hitedTarget)
     {
         hitedTarget.HitPointsManager.Hurt(Damage);

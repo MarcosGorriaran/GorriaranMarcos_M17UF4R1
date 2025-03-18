@@ -10,6 +10,10 @@ public class TestNavmesh : MonoBehaviour
     NavMeshAgent _agent;
     [SerializeField]
     Transform _target;
+    [SerializeField]
+    Weapon _weapon;
+    [SerializeField]
+    HPManager _hp;
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -30,7 +34,11 @@ public class TestNavmesh : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-
+            _weapon.Fire();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _hp.Hurt(1);
         }
     }
 

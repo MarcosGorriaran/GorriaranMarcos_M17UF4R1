@@ -10,11 +10,9 @@ public class TravelBullet : BulletProyectile
     float _speed;
     Rigidbody _bulletBody;
     Coroutine _bulletLifeCountdown;
-    private void OnEnable()
+    private void Awake()
     {
-        _lifeTime = Range / _speed;
-        _bulletBody.velocity = transform.forward * _speed;
-        _bulletLifeCountdown = StartCoroutine(BulletCountdown(_lifeTime));
+        _bulletBody = GetComponent<Rigidbody>();
     }
     private void OnDisable()
     {
@@ -22,6 +20,14 @@ public class TravelBullet : BulletProyectile
         {
             StopCoroutine(_bulletLifeCountdown);
         }
+        _bulletBody.velocity = Vector3.zero;
+    }
+    public override void AdjustRotation(Transform basedOn)
+    {
+        base.AdjustRotation(basedOn);
+        _lifeTime = Range / _speed;
+        _bulletBody.velocity = transform.forward * _speed;
+        _bulletLifeCountdown = StartCoroutine(BulletCountdown(_lifeTime));
     }
     private IEnumerator BulletCountdown(float lifeTime)
     {

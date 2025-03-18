@@ -28,13 +28,15 @@ public class IACharacter : Character
     {
         Agent = GetComponent<NavMeshAgent>();
     }
-    protected virtual void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         _targetFinder.onTargetedFound += CheckEndingConditions;
         _targetFinder.onTargetLost += CheckEndingConditions;
     }
-    protected virtual void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         _targetFinder.onTargetedFound -= CheckEndingConditions;
         _targetFinder.onTargetLost -= CheckEndingConditions;
     }
