@@ -4,6 +4,7 @@ using UnityEngine;
 public class WeaponSO : ScriptableObject
 {
     [SerializeField]
+    [InspectorName("RPM")]
     float _rateOfFire;
     [SerializeField]
     Proyectile _bulletPrefab;

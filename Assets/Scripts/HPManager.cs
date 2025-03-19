@@ -1,8 +1,11 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 
 public class HPManager : MonoBehaviour
 {
+    [SerializeField]
+    [ReadOnly(true)]
     int hp;
     [SerializeField]
     int maxHp;

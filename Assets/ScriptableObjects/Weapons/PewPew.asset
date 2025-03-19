@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7b3c091c3ba624a9a9786cd3a2691f, type: 3}
   m_Name: PewPew
   m_EditorClassIdentifier: 
-  _rateOfFire: 0
+  _rateOfFire: 200
   _bulletPrefab: {fileID: 3757847839574364284, guid: 8ba2aef5d9a393f4eba5755768a5ee6a, type: 3}

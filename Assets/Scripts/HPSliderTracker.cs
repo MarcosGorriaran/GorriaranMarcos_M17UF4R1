@@ -15,6 +15,19 @@ public class HPSliderTracker : MonoBehaviour
         _slider = GetComponent<Slider>();
         _slider.maxValue = _trackedEntity.GetMaxHp();
         
+        
+    }
+    private void Start()
+    {
+        if (_fillSlider)
+        {
+            _slider.value = _trackedEntity.GetMaxHp() - _trackedEntity.GetHp();
+        }
+        else
+        {
+            _slider.value = _trackedEntity.GetHp();
+        }
+        
     }
     private void OnEnable()
     {
@@ -33,7 +46,7 @@ public class HPSliderTracker : MonoBehaviour
         }
         else
         {
-            _slider.value = hpValue;
+            _slider.value = _trackedEntity.GetHp();
         }
         
     }

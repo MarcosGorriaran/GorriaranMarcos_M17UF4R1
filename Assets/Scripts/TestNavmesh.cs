@@ -32,7 +32,7 @@ public class TestNavmesh : MonoBehaviour
           
             
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             _weapon.Fire();
         }

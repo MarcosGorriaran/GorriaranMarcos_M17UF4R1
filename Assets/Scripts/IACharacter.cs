@@ -40,10 +40,6 @@ public class IACharacter : Character
         _targetFinder.onTargetedFound -= CheckEndingConditions;
         _targetFinder.onTargetLost -= CheckEndingConditions;
     }
-    public override void Attack()
-    {
-        
-    }
     /**
      * <summary>
      * Check each condition listed on the End Conditions variable of the ConditionSO currently being used on this component StateSO

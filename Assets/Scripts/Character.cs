@@ -11,6 +11,8 @@ public abstract class Character : MonoBehaviour, ITargetable
     [SerializeField]
     [InspectorName("Starting threat level")]
     float _threatLevel;
+    [SerializeField]
+    Weapon _charWeapon;
     public Group GroupMember { get => _groupMember; set => _groupMember = value; }
     public float ThreatLevel { get => _threatLevel; set => _threatLevel = value; }
     public HPManager HitPointsManager
@@ -24,7 +26,17 @@ public abstract class Character : MonoBehaviour, ITargetable
             _hitPointsManager = value;
         }
     }
-    
+    public Weapon Weapon
+    {
+        get
+        {
+            return _charWeapon;
+        }
+        private set
+        {
+            _charWeapon = value;
+        }
+    }
     protected virtual void OnEnable()
     {
         HitPointsManager.onDeath += OnDeath;
@@ -37,7 +49,6 @@ public abstract class Character : MonoBehaviour, ITargetable
         HitPointsManager.onRevive -= OnRevive;
         HitPointsManager.onHPChange -= OnHPChange;
     }
-    public abstract void Attack();
     protected abstract void OnDeath();
     protected abstract void OnRevive();
     protected abstract void OnHPChange(int hpChange);

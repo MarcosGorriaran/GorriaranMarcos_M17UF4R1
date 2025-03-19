@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    const float RpmConversionRate = 60;
     [SerializeField]
     Transform _bulletSpawn;
     [SerializeField]
     WeaponSO _weaponInfo;
     Stack<Proyectile> _proyectilePool = new Stack<Proyectile>();
+    Coroutine _weaponCooldown;
 
     public WeaponSO WeaponInfo {
         get 
@@ -35,8 +38,21 @@ public class Weapon : MonoBehaviour
         }
         newProyectile.AdjustRotation(_bulletSpawn);
     }
+    private IEnumerator WeaponCooldown()
+    {
+        yield return new WaitForSeconds(RpmToCooldownTime(_weaponInfo.RateOfFire));
+        _weaponCooldown = null;
+    }
+    private float RpmToCooldownTime(float rpm)
+    {
+        return RpmConversionRate / rpm;
+    }
     public void Fire()
     {
-        CreateBullet();
+        if (_weaponCooldown == null)
+        {
+            _weaponCooldown = StartCoroutine(WeaponCooldown());
+            CreateBullet();
+        }
     }
 }
