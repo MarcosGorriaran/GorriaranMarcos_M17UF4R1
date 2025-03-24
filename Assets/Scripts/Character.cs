@@ -37,6 +37,10 @@ public abstract class Character : MonoBehaviour, ITargetable
             _charWeapon = value;
         }
     }
+    protected virtual void Awake()
+    {
+        Weapon.Owner = this;
+    }
     protected virtual void OnEnable()
     {
         HitPointsManager.onDeath += OnDeath;

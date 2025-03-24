@@ -10,9 +10,16 @@ public class Weapon : MonoBehaviour
     Transform _bulletSpawn;
     [SerializeField]
     WeaponSO _weaponInfo;
+    Character _owner;
     Stack<Proyectile> _proyectilePool = new Stack<Proyectile>();
     Coroutine _weaponCooldown;
 
+
+    public Character Owner
+    {
+        private get { return _owner; }
+        set { _owner = value; }
+    }
     public WeaponSO WeaponInfo {
         get 
         {
@@ -36,6 +43,7 @@ public class Weapon : MonoBehaviour
             newProyectile = Instantiate(WeaponInfo.BulletPrefab);
             newProyectile.OriginPool = _proyectilePool;
         }
+        newProyectile.Owner = Owner;
         newProyectile.AdjustRotation(_bulletSpawn);
     }
     private IEnumerator WeaponCooldown()

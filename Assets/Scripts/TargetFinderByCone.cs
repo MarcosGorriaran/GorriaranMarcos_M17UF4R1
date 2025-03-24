@@ -28,6 +28,6 @@ public class TargetFinderByCone : TargetFinder
 
     protected override void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position,transform.position+(transform.forward*_visionRange));
+        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * _visionRange));
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]  
-public class TravelBullet : BulletProyectile
+public class TravelBullet : Proyectile
 {
     float _lifeTime;
     [SerializeField]
@@ -36,10 +36,11 @@ public class TravelBullet : BulletProyectile
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Character targetHit) && Owner != targetHit)
+        if(other.TryGetComponent(out Character targetHit) && !IsTargetOwner(targetHit))
         {
             OnHit(targetHit);
-            Despawn();
+            
         }
+        Despawn();
     }
 }

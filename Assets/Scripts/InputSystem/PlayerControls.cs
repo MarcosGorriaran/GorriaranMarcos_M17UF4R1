@@ -24,23 +24,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
-            ""id"": ""5f657342-2ae5-4e77-869d-490e6f656285"",
+            ""name"": ""Player"",
+            ""id"": ""08cdc57f-3ae4-44be-a488-94e22a8e2de2"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
-                    ""id"": ""ade8af0e-f478-44fa-a82e-482c95c15818"",
+                    ""id"": ""f29a38bb-1aa8-4f03-9403-37bd1f0f8d83"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FireWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""eff186fc-02c8-4be4-ad5d-09e2bea7cff7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""e1df8d63-dfcf-41aa-b049-eb89d0618f65"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4d4278c-d2fa-4f55-8e01-5273a1915cc8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""Keyboard"",
-                    ""id"": ""b70961a6-be5f-4870-b827-81f3f5c0723f"",
+                    ""id"": ""41b144a9-dd12-4c62-bd0b-369bba51f85d"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -51,7 +78,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""bb856714-1d4e-472d-9460-99ebb9e25f77"",
+                    ""id"": ""a890d923-5ab9-4e06-ae35-46a5cb0c1d84"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -62,7 +89,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""11e2625b-3cd4-497e-819f-69641d6c9b0d"",
+                    ""id"": ""765efe31-f018-4d55-95fa-7e4b4d49e607"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -73,7 +100,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""b61999e0-603d-4e83-9458-c85b8360f5da"",
+                    ""id"": ""6bc21b68-8287-40c0-a370-35bc59fea73b"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -84,7 +111,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""2deb923a-7c02-4b55-8965-6589d99f313c"",
+                    ""id"": ""9f587827-3385-4e8a-89a0-4116e7f53340"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -92,32 +119,37 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""Fire"",
-            ""id"": ""9df8897a-2ad7-4e9a-a8df-e122ea0a899d"",
-            ""actions"": [
-                {
-                    ""name"": ""FireWeapon"",
-                    ""type"": ""Button"",
-                    ""id"": ""8a13b8fd-cb1d-4083-b31e-dd3c3feff746"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""ae552b4d-6da0-41e8-84ae-2db95e766180"",
+                    ""id"": ""75f5e8c7-4d7c-4303-9e81-c65be3669707"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""FireWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cf28273-6127-4682-a166-f34348131cfb"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe310bd8-64f6-450c-9fff-5a1d6ae2711f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -126,12 +158,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Movement
-        m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
-        // Fire
-        m_Fire = asset.FindActionMap("Fire", throwIfNotFound: true);
-        m_Fire_FireWeapon = m_Fire.FindAction("FireWeapon", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_FireWeapon = m_Player.FindAction("FireWeapon", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_PauseGame = m_Player.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -190,103 +222,80 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Movement
-    private readonly InputActionMap m_Movement;
-    private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_Move;
-    public struct MovementActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_FireWeapon;
+    private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_PauseGame;
+    public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
-        public MovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Movement_Move;
-        public InputActionMap Get() { return m_Wrapper.m_Movement; }
+        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @FireWeapon => m_Wrapper.m_Player_FireWeapon;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-        public void AddCallbacks(IMovementActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @FireWeapon.started += instance.OnFireWeapon;
+            @FireWeapon.performed += instance.OnFireWeapon;
+            @FireWeapon.canceled += instance.OnFireWeapon;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
         }
 
-        private void UnregisterCallbacks(IMovementActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-        }
-
-        public void RemoveCallbacks(IMovementActions instance)
-        {
-            if (m_Wrapper.m_MovementActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IMovementActions instance)
-        {
-            foreach (var item in m_Wrapper.m_MovementActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public MovementActions @Movement => new MovementActions(this);
-
-    // Fire
-    private readonly InputActionMap m_Fire;
-    private List<IFireActions> m_FireActionsCallbackInterfaces = new List<IFireActions>();
-    private readonly InputAction m_Fire_FireWeapon;
-    public struct FireActions
-    {
-        private @PlayerControls m_Wrapper;
-        public FireActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @FireWeapon => m_Wrapper.m_Fire_FireWeapon;
-        public InputActionMap Get() { return m_Wrapper.m_Fire; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(FireActions set) { return set.Get(); }
-        public void AddCallbacks(IFireActions instance)
-        {
-            if (instance == null || m_Wrapper.m_FireActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_FireActionsCallbackInterfaces.Add(instance);
-            @FireWeapon.started += instance.OnFireWeapon;
-            @FireWeapon.performed += instance.OnFireWeapon;
-            @FireWeapon.canceled += instance.OnFireWeapon;
-        }
-
-        private void UnregisterCallbacks(IFireActions instance)
-        {
             @FireWeapon.started -= instance.OnFireWeapon;
             @FireWeapon.performed -= instance.OnFireWeapon;
             @FireWeapon.canceled -= instance.OnFireWeapon;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
         }
 
-        public void RemoveCallbacks(IFireActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_FireActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IFireActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_FireActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_FireActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public FireActions @Fire => new FireActions(this);
-    public interface IMovementActions
+    public PlayerActions @Player => new PlayerActions(this);
+    public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-    }
-    public interface IFireActions
-    {
         void OnFireWeapon(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

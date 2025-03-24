@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,15 +11,30 @@ public abstract class TargetFinder : MonoBehaviour
     [SerializeField]
     public bool seeTroughObstacles;
     private bool targetFound;
-    private Collider _foundTarget;
+    private GameObject _foundTarget;
     public delegate void TargetFoundAction();
+    /**
+     * <summary>
+     * When a target has been found, this method will be raised.
+     * </summary>
+     */
     public event TargetFoundAction onTargetedFound;
     public delegate void TargetChangeAction();
+    /**
+     * <summary>
+     * When the target finder switches target this event will be raised.
+     * </summary>
+     */
     public event TargetChangeAction onTargetedChange;
     public delegate void TargetLostAction();
+    /**
+     * <summary>
+     * When the target finder looses sight of any target this event will be raised.
+     * </summary>
+     */
     public event TargetLostAction onTargetLost;
 
-    public Collider FoundTarget { get { return _foundTarget; } private set { _foundTarget = value; } }
+    public GameObject FoundTarget { get { return _foundTarget; } private set { _foundTarget = value; } }
 
     void FixedUpdate()
     {
@@ -33,22 +49,24 @@ public abstract class TargetFinder : MonoBehaviour
 
             if (elementsFound.Count() > 0)
             {
-                Debug.Log(gameObject.name + " \"TargetFound\"");
                 Collider actualFoundTarget = SelectHighestThreat(elementsFound);
-                targetFound = true;
-                if(actualFoundTarget != FoundTarget)
+                if(actualFoundTarget.gameObject != FoundTarget && targetFound)
                 {
                     onTargetedChange?.Invoke();
+                    Debug.Log(gameObject.name+": Target changed");
                 }
-                FoundTarget = actualFoundTarget;
+                FoundTarget = actualFoundTarget.gameObject;
                 if (!targetFound)
                 {
                     onTargetedFound?.Invoke();
+                    Debug.Log(gameObject.name + ": Target found");
                 }
+                targetFound = true;
             }
             else if (elementsFound.Count() <= 0 && targetFound)
             {
-                Debug.Log(gameObject.name + " \"TargetLost\"");
+                Debug.Log(gameObject.name + " TargetLost");
+                FoundTarget = null;
                 onTargetLost?.Invoke();
                 targetFound = false;
             }
@@ -74,10 +92,12 @@ public abstract class TargetFinder : MonoBehaviour
     }
     private bool LineOfShightCheck(Collider element)
     {
-        Vector2 distanceVector = element.transform.position - transform.position;
-        float distance = Vector2.Distance(element.transform.position, transform.position);
-        Vector2 direction = distanceVector.normalized;
-        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, direction, distance);
+        Vector3 distanceVector = element.transform.position - transform.position;
+        float distance = Vector3.Distance(element.transform.position, transform.position);
+        Vector3 direction = distanceVector.normalized;
+        List<RaycastHit> hit = Physics.RaycastAll(transform.position, direction, distance).ToList();
+        hit.RemoveAll(obj=>obj.transform.gameObject == gameObject);
+ 
         return hit.Where((obj => !obj.transform.TryGetComponent<ITargetable>(out _))).Count() == 0;
     }
     private Collider SelectHighestThreat(Collider firstElement, Collider secondElement)

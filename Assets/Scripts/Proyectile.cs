@@ -8,7 +8,14 @@ public abstract class Proyectile : MonoBehaviour
     [SerializeField]
     uint _damage;
     Character _owner;
+    [SerializeField]
+    float _range;
 
+    public float Range
+    {
+        get { return _range; }
+        private set { _range = value; }
+    }
 
     protected uint Damage
     {
@@ -38,5 +45,9 @@ public abstract class Proyectile : MonoBehaviour
     {
         OriginPool.Push(this);
         gameObject.SetActive(false);
+    }
+    protected bool IsTargetOwner(Character target)
+    {
+        return target.gameObject == Owner.gameObject;
     }
 }
