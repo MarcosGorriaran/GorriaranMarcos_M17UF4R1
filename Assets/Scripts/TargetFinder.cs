@@ -10,6 +10,7 @@ public abstract class TargetFinder : MonoBehaviour
     public Group[] targetGroups;
     [SerializeField]
     public bool seeTroughObstacles;
+    private Vector3? _lastKnownLocation;
     private bool targetFound;
     private GameObject _foundTarget;
     public delegate void TargetFoundAction();
@@ -35,6 +36,7 @@ public abstract class TargetFinder : MonoBehaviour
     public event TargetLostAction onTargetLost;
 
     public GameObject FoundTarget { get { return _foundTarget; } private set { _foundTarget = value; } }
+    public Vector3? LastKnownLocation { get { return _lastKnownLocation; } private set { _lastKnownLocation = value; } }
 
     void FixedUpdate()
     {
@@ -62,6 +64,7 @@ public abstract class TargetFinder : MonoBehaviour
                     Debug.Log(gameObject.name + ": Target found");
                 }
                 targetFound = true;
+                LastKnownLocation = FoundTarget.transform.position;
             }
             else if (elementsFound.Count() <= 0 && targetFound)
             {
@@ -107,6 +110,10 @@ public abstract class TargetFinder : MonoBehaviour
     private Collider SelectHighestThreat(Collider[] elements)
     {
         return elements.Aggregate(SelectHighestThreat);
+    }
+    public void ClearLastKnownLocation()
+    {
+        LastKnownLocation = null;
     }
     //I want the class children to represent the area its looking for targets.
     protected abstract void OnDrawGizmos();
